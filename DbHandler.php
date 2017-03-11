@@ -325,6 +325,15 @@ class DbHandler {
         $stmt->close();
         return $result;		
 	}
+	
+	public function insertIntoTable($message, $mobileNumber) {
+		$stmt = $this->conn->prepare("UPDATE USER_MESSAGE SET CURRENT_MESSAGE = ? WHERE MOBILE_NUMBER = ? ");
+		$stmt->bind_param("ss", $message, $mobileNumber);
+		
+		$result = $stmt->execute();
+        $stmt->close();
+        return $result;		
+	}
 			
 }
 ?>
